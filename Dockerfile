@@ -18,9 +18,6 @@ RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/server/php/inc/ -i /App.php.patch && r
 ADD options.json.patch options.json.patch
 RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/conf/ -i /options.json.patch && rm options.json.patch
 
-#use a basic auth system
-ADD htpasswd /var/www/.htpasswd
-
 # add h5ai as the only nginx site
 ADD h5ai.nginx.conf /etc/nginx/sites-available/h5ai
 RUN ln -s /etc/nginx/sites-available/h5ai /etc/nginx/sites-enabled/h5ai
