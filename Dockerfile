@@ -1,7 +1,9 @@
 FROM ubuntu
 MAINTAINER Christian Lück <christian@lueck.tv>
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get install -y \
   nginx php5-fpm supervisor \
   wget unzip patch
 
