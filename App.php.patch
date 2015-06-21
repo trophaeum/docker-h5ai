@@ -1,12 +1,11 @@
---- a/App.php
-+++ b/App.php
-@@ -18,7 +18,7 @@
- 	public function __construct($app_abs_path, $app_abs_href, $abs_href) {
+--- a/class-bootstrap.php
++++ b/class-bootstrap.php
+@@ -74,7 +74,7 @@ class Bootstrap {
+         define("APP_PATH", Util::normalize_path(dirname(dirname(dirname(dirname(__FILE__)))), false));
  
- 		$this->app_abs_path = normalize_path($app_abs_path);
--		$this->root_abs_path = normalize_path(dirname($this->app_abs_path));
-+		$this->root_abs_path = '/var/www';
+         define("ROOT_HREF", Util::normalize_path(dirname(APP_HREF), true));
+-        define("ROOT_PATH", Util::normalize_path(dirname(APP_PATH), false));
++        define("ROOT_PATH", "/var/www");
  
- 		$this->app_abs_href = normalize_path($app_abs_href, true);
- 		$this->root_abs_href = normalize_path(dirname($this->app_abs_href), true);
-
+         $uri_parts = parse_url(getenv("REQUEST_URI"));
+         $current_href = Util::normalize_path($uri_parts["path"], true);
