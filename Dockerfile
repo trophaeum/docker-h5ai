@@ -27,11 +27,6 @@ RUN setfacl -R -m u:"$HTTPD_USER":rwX /usr/share/h5ai/_h5ai/cache/
 
 WORKDIR /var/www
 
-# add dummy files in case the container is not run with a volume mounted to /var/www
-RUN echo "Looks like you did not mount a volume to `/var/www`. See README.md for details." > /var/www/INSTALL.md
-RUN mkdir -p /var/www/first/second/third/fourth/fifth
-ADD README.md /var/www/README.md
-
 # use supervisor to monitor all services
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 CMD supervisord -c /etc/supervisor/conf.d/supervisord.conf
