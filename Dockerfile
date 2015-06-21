@@ -2,8 +2,8 @@ FROM ubuntu:14.04
 MAINTAINER Paul Valla <paul.valla@gmail>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV H5AI_VERSION=0.27.0
-ENV HTTPD_USER=www-data
+ENV H5AI_VERSION 0.27.0
+ENV HTTPD_USER www-data
 
 RUN apt-get update && apt-get install -y \
   nginx php5-fpm supervisor \
@@ -16,9 +16,6 @@ RUN unzip h5ai-$H5AI_VERSION.zip -d /usr/share/h5ai
 # patch h5ai because we want to deploy it ouside of the document root and use /var/www as root for browsing
 ADD App.php.patch App.php.patch
 RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/server/php/inc/ -i /App.php.patch && rm App.php.patch
-
-#ADD options.json.patch options.json.patch
-#RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/conf/ -i /options.json.patch && rm options.json.patch
 
 # add h5ai as the only nginx site
 ADD h5ai.nginx.conf /etc/nginx/sites-available/h5ai
