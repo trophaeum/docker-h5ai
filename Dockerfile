@@ -4,6 +4,7 @@ MAINTAINER Paul Valla <paul.valla@gmail>
 ENV DEBIAN_FRONTEND noninteractive
 ENV H5AI_VERSION 0.27.0
 ENV HTTPD_USER www-data
+ENV SERVER_NAME=nginx
 
 RUN apt-get update && apt-get install -y \
   nginx php5-fpm supervisor \
@@ -18,7 +19,8 @@ ADD App.php.patch App.php.patch
 RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/server/php/inc/ -i /App.php.patch && rm App.php.patch
 
 # add h5ai as the only nginx site
-ADD h5ai.nginx.conf /etc/nginx/sites-available/h5ai
+ADD h5ai.nginx.conf
+RUN sed -e "s/:SERVER_NAME:/$SERVER_NAME/g" h5ai.nginx.conf > /etc/nginx/sites-available/h5ai
 RUN ln -s /etc/nginx/sites-available/h5ai /etc/nginx/sites-enabled/h5ai
 RUN rm /etc/nginx/sites-enabled/default
 
