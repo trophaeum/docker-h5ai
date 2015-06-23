@@ -1,11 +1,10 @@
 server {
 	listen 443 default_server ssl;
-	server_name signup.mysite.com;
+	server_name :SERVER_NAME:;
 	root /var/www;
 
 	index /_h5ai/server/php/index.php;
 	
-	server_name :SERVER_NAME:;
 	ssl_certificate /etc/nginx/ssl/:SERVER_NAME:.crt;
     ssl_certificate_key /etc/nginx/ssl/:SERVER_NAME:.key;	
     ssl_session_timeout 5m;
