@@ -18,7 +18,7 @@ Further runs will be immediate, as the image will be cached locally.
 The recommended way to run this container looks like this:
 
 ```bash
-$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout supergoogle.com.key -out super google.com.crt
+$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout supergoogle.com.key -out supergoogle.com.crt
 ```
 
 ```bash
