@@ -18,13 +18,17 @@ Further runs will be immediate, as the image will be cached locally.
 The recommended way to run this container looks like this:
 
 ```bash
-$ sudo docker run -it --rm -p 80:80 -v `pwd`:/var/www clue/h5ai
+$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout supergoogle.com.key -out super google.com.crt
+```
+
+```bash
+$ docker run -it --rm -e SERVER_NAME=supergoogle.com -p 80:80 -p 443:443 -v $PWD:/var/www -v $PWD/ssl:/etc/nginx/ssl h5
 ```
 
 You can now point your webbrowser to this URL:
 
 ```
-http://localhost/
+http://example.com/ and you will be redirected to https://example.com
 ```
 
 This is a rather common setup following docker's conventions:
