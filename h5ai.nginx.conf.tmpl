@@ -30,7 +30,7 @@ server {
 
 server {
 	listen 80;
-	server_name neo4j;
+	server_name :SERVER_NAME:;
 	return 301 https://$server_name$request_uri;
 }
 
