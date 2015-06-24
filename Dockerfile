@@ -18,7 +18,7 @@ ADD App.php.patch App.php.patch
 RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/server/php/inc/ -i /App.php.patch && rm App.php.patch
 
 # add h5ai as the only nginx site
-ADD h5ai.nginx.conf /etc/nginx/sites-available/h5ai
+ADD h5ai.nginx.conf.tmpl /etc/nginx/sites-available/h5ai
 RUN ln -s /etc/nginx/sites-available/h5ai /etc/nginx/sites-enabled/h5ai
 RUN rm /etc/nginx/sites-enabled/default
 
