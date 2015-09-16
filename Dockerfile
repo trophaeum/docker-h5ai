@@ -17,23 +17,16 @@ RUN unzip h5ai-$H5AI_VERSION.zip -d /usr/share/h5ai
 COPY App.php.patch App.php.patch
 RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/server/php/inc/ -i /App.php.patch && rm App.php.patch
 
-# add h5ai as the only nginx site
-COPY h5ai.nginx.conf.tmpl /etc/nginx/sites-available/h5ai
-RUN ln -s /etc/nginx/sites-available/h5ai /etc/nginx/sites-enabled/h5ai
 RUN rm /etc/nginx/sites-enabled/default
 
 #make the cache writable
 RUN setfacl -R -m u:"$HTTPD_USER":rwX /usr/share/h5ai/_h5ai/cache/
 
-WORKDIR /var/www
 
 # use supervisor to monitor all services
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-CMD sed -i "s/:SERVER_NAME:/$SERVER_NAME/g" /etc/nginx/sites-available/h5ai && supervisord -c /etc/supervisor/conf.d/supervisord.conf
+CMD supervisord -c /etc/supervisor/conf.d/supervisord.conf
 
 # expose only nginx HTTP port
 EXPOSE 80 443
-
-# expose path
-VOLUME /var/www
 
