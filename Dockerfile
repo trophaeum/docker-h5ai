@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Paul Valla <paul.valla@gmail>
+MAINTAINER Paul Valla <paul.valla+docker@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV H5AI_VERSION 0.27.0
@@ -29,4 +29,3 @@ CMD supervisord -c /etc/supervisor/conf.d/supervisord.conf
 
 # expose only nginx HTTP port
 EXPOSE 80 443
-
