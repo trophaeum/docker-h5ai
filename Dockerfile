@@ -27,7 +27,15 @@ RUN chown -R "$HTTPD_USER" /usr/share/h5ai/_h5ai/private/cache/
 
 # use supervisor to monitor all services
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-CMD supervisord -c /etc/supervisor/conf.d/supervisord.conf
+COPY entrypoint.sh /entrypoint.sh
+CMD /entrypoint.sh
+
+# add deps to configure options.json
+COPY minify.php /root
+RUN ( \
+        cd /root && \
+        wget -q https://raw.githubusercontent.com/getify/JSON.minify/php/minify.json.php \
+    )
 
 # expose only nginx HTTP port
 EXPOSE 80 443
