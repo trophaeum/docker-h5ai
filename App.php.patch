@@ -1,11 +1,11 @@
---- a/class-bootstrap.php
-+++ b/class-bootstrap.php
-@@ -74,7 +74,7 @@ class Bootstrap {
-         define("APP_PATH", Util::normalize_path(dirname(dirname(dirname(dirname(__FILE__)))), false));
+--- a/class-setup.php	2016-02-24 21:35:40.023947983 +0000
++++ b/class-setup.php	2016-02-24 21:36:55.655456667 +0000
+@@ -106,7 +106,7 @@
+         $this->set('H5AI_PATH', Util::normalize_path(dirname(dirname(dirname(dirname(__FILE__)))), false));
  
-         define("ROOT_HREF", Util::normalize_path(dirname(APP_HREF), true));
--        define("ROOT_PATH", Util::normalize_path(dirname(APP_PATH), false));
-+        define("ROOT_PATH", "/var/www");
+         $this->set('ROOT_HREF', Util::normalize_path(dirname($this->get('H5AI_HREF')), true));
+-        $this->set('ROOT_PATH', Util::normalize_path(dirname($this->get('H5AI_PATH')), false));
++        $this->set('ROOT_PATH', "/var/www");
  
-         $uri_parts = parse_url(getenv("REQUEST_URI"));
-         $current_href = Util::normalize_path($uri_parts["path"], true);
+         $this->set('PUBLIC_HREF', Util::normalize_path($this->get('H5AI_HREF') . '/public/', true));
+         $this->set('PUBLIC_PATH', Util::normalize_path($this->get('H5AI_PATH') . '/public/', false));
