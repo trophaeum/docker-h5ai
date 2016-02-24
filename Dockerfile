@@ -6,8 +6,8 @@ ENV H5AI_VERSION 0.28.1
 ENV HTTPD_USER www-data
 
 RUN apt-get update && apt-get install -y \
-  nginx php5-fpm php5-cli supervisor \
-  wget unzip patch acl jq
+  nginx php5-fpm supervisor \
+  wget unzip patch acl
 
 # install h5ai and patch configuration
 RUN wget http://release.larsjung.de/h5ai/h5ai-$H5AI_VERSION.zip
