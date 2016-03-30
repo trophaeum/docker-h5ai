@@ -6,7 +6,7 @@
 
 ```
 $ sudo docker run -d \
-  -p 80:80 \ 
+  -p 80:80 \
   -v $PWD:/var/www \
   -v $PWD/nginx_config_examples/basic_h5ai.nginx.conf:/etc/nginx/sites-enabled/h5.conf \
   paulvalla/h5ai
