@@ -19,7 +19,7 @@ RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/private/php/core/ -i /class-setup.php.
 RUN rm /etc/nginx/sites-enabled/default
 
 #make the cache writable
-RUN setfacl -R -m u:"$HTTPD_USER":rwX /usr/share/h5ai/_h5ai/public/cache/
+RUN setfacl -R -m u:${HTTPD_USER}:rwX /usr/share/h5ai/_h5ai/public/cache/
 
 # use supervisor to monitor all services
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
