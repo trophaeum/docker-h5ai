@@ -2,7 +2,6 @@ FROM ubuntu:14.04
 MAINTAINER Paul Valla <paul.valla+docker@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV H5AI_VERSION 0.28.1
 ENV HTTPD_USER www-data
 
 RUN apt-get update && apt-get install -y \
@@ -12,7 +11,7 @@ RUN apt-get update && apt-get install -y \
   graphicsmagick zip unzip php5-gd
 
 # install h5ai and patch configuration
-ENV H5AI_VERSION 0.28.1+003~ed1ab40
+ENV H5AI_VERSION 0.29.0+002~140eb30
 RUN wget -O h5ai.zip https://github.com/CoRfr/h5ai/raw/build/build/h5ai-$H5AI_VERSION.zip
 RUN unzip h5ai.zip -d /usr/share/h5ai
 
