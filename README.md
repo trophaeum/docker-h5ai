@@ -1,6 +1,6 @@
-#DOCKER-H5AI
+# DOCKER-H5AI
 
-##RUN with a basic nginx configuration file
+## RUN with a basic nginx configuration file
 
 
 
@@ -12,7 +12,7 @@ $ sudo docker run -d \
   paulvalla/h5ai
 ```
 
-##HTTPS and PASSWORD
+## HTTPS and PASSWORD
 
 1. Create a password file. [Set up http auth with nginx](https://www.digitalocean.com/community/tutorials/how-to-set-up-http-authentication-with-nginx-on-ubuntu-12-10)
 2. Create nginx conf file or look at the one in `nginx_config_examples/`
