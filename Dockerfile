@@ -1,18 +1,18 @@
-FROM ubuntu:14.04
-MAINTAINER Paul Valla <paul.valla+docker@gmail.com>
+FROM ubuntu:devel
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV HTTPD_USER www-data
 
-RUN apt-get update && apt-get install -y \
-  nginx php5-fpm supervisor \
+COPY sources.list /etc/apt/sources.list
+
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
+  nginx php7.2-fpm supervisor \
   wget unzip patch acl \
   libav-tools imagemagick \
-  graphicsmagick zip unzip php5-gd
+  graphicsmagick zip unzip php7.2-gd php7.2-opcache php7.2-zip && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # install h5ai and patch configuration
-ENV H5AI_VERSION 0.29.0+002~140eb30
-RUN wget -O h5ai.zip https://github.com/CoRfr/h5ai/raw/build/build/h5ai-$H5AI_VERSION.zip
+RUN wget -O h5ai.zip https://github.com/JixunMoe/h5ai/archive/master.zip
 RUN unzip h5ai.zip -d /usr/share/h5ai
 
 # patch h5ai because we want to deploy it ouside of the document root and use /var/www as root for browsing
