@@ -9,11 +9,11 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   nginx php7.2-fpm supervisor \
   wget unzip patch acl \
   libav-tools imagemagick \
-  graphicsmagick zip unzip php7.2-gd php7.2-opcache php7.2-zip && apt-get clean && rm -rf /var/lib/apt/lists/*
+  graphicsmagick zip unzip php7.2-gd php7.2-opcache php7.2-zip npm composer && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # install h5ai and patch configuration
 RUN wget -O h5ai.zip https://github.com/JixunMoe/h5ai/archive/master.zip
-RUN unzip h5ai.zip -d /usr/share/h5ai
+RUN unzip h5ai.zip -d /usr/share/h5ai && cd /usr/share/h5ai && npm install && npm run build && mkdir -p /usr/share/h5ai/_h5ai && ln -s /usr/share/h5ai/h5ai-master/src/_h5ai/private /usr/share/h5ai/_h5ai
 
 # patch h5ai because we want to deploy it ouside of the document root and use /var/www as root for browsing
 COPY class-setup.php.patch class-setup.php.patch
